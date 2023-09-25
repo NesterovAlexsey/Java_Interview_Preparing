@@ -11,6 +11,16 @@ public class Task4_factorial_test {
     assertEquals(24, result);
   }
 
-  //todo and tests for negative test factorial
+  @Test
+  public void negativeValuesNegativeTest(){
+      assertThrows(IllegalArgumentException.class, () -> {
+        Task4_factorial.factorial(-5);
+      });
+  }
 
+  @Test
+  public void zeroPossitiveTest(){
+    long result = Task4_factorial.factorial(0);
+    assertEquals(1, result);
+  }
 }
