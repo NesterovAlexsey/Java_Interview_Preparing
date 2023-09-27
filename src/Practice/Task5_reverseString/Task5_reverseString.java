@@ -1,7 +1,5 @@
 package Practice.Task5_reverseString;
 
-import java.util.ArrayList;
-
 //Task: Write a program to reverse a string
 public class Task5_reverseString {
 
@@ -13,7 +11,7 @@ public class Task5_reverseString {
   }
 
   public static String reverseStringWithCharArray(String text){
-    //todo if it is not empty
+    isTextNull(text);
 
     char[] forReverse = text.toCharArray();
 
@@ -35,10 +33,12 @@ public class Task5_reverseString {
   }
 
   public static String reverseStringWithLibrary(String text) {
+    isTextNull(text);
     return new StringBuilder(text).reverse().toString();
   }
 
   public static String reverseString(String text) {
+    isTextNull(text);
     String reverse = "";
 
     for (int i = text.length() - 1; i >= 0; i--) {
@@ -46,6 +46,12 @@ public class Task5_reverseString {
     }
 
     return reverse;
+  }
+
+  private static void isTextNull(String text) {
+    if (text == null) {
+      throw new NullPointerException("Null is unavailable parameter");
+    }
   }
 
 }
