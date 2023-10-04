@@ -5,8 +5,8 @@ package Practice.Task6_Stack;
 /*
 Theory: stack principe - LIFO - "last in - first out" (Pringles)
 Important stack operations:
-  Push() - inserting an element in a stack
-  Pop() - deleting an element from the stack
+  + Push() - inserting an element in a stack
+  + Del() - deleting an element from the stack and return this element
   Peek() - return the top element of a stack without removing it
   size - return the size of the stack
   isFull() - check if a stack is full
@@ -21,7 +21,7 @@ public class StackWithArrayList {
 
   private int size;
 
-  private final static int INITIAL_SIZE = 10;
+  private final static int INITIAL_SIZE = 1;
 
   /**
    * Constructor - create a new object of StackWithArrayList, where size = constant INITIAL_SIZE
@@ -33,21 +33,69 @@ public class StackWithArrayList {
 
   /**
    * push - inserting an element in a stack on top
+   *
    * @param number - this value will be storage in stack
    */
   public void push(int number) {
     if (stack.length == size) {
-      //todo - do the stack bigger
+      stack = doubleStackSize(stack);
     }
+
     stack[size] = number;
     size++;
+  }
+
+  /**
+   * method deleting an element from the stack and return this element, if element exist. If not - return
+   * ArrayIndexOutOfBoundsException;
+   *
+   * @return deleted element
+   */
+  public int del() {
+    if (size == 0) {
+      throw new ArrayIndexOutOfBoundsException("There is no elements in the stack");
+    }
+
+    int result = stack[size - 1];
+
+    stack[size - 1] = 0;
+    size--;
+
+    return result;
+  }
+
+  /**
+   * Method for creating double stack size
+   *
+   * @param stack - initial stack, which is full
+   * @return - new stack, with same data, as an initial stack, but in 2 times bigger
+   */
+  private static int[] doubleStackSize(int[] stack) {
+    int[] newStack = new int[2 * stack.length];
+    for (int i = 0; i < stack.length; i++) {
+      newStack[i] = stack[i];
+    }
+    return newStack;
+  }
+
+  @Override
+  public String toString() {
+    String elements = "";
+    for (int i = 0; i < stack.length; i++) {
+      elements = elements + "[" + stack[i] + "]";
+    }
+    return elements;
   }
 
   public static void main(String[] args) {
     StackWithArrayList stack = new StackWithArrayList();
     stack.push(1);
     stack.push(2);
+    stack.push(3);
+    stack.push(4);
+    System.out.println(stack.del());
+    System.out.println(stack.del());
 
-    System.out.println(stack.size);
+    System.out.println(stack);
   }
 }
