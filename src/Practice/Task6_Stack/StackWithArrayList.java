@@ -7,7 +7,7 @@ Theory: stack principe - LIFO - "last in - first out" (Pringles)
 Important stack operations:
   + Push() - inserting an element in a stack
   + Del() - deleting an element from the stack and return this element
-  Peek() - return the top element of a stack without removing it
+  + Peek() - return the top element of a stack without removing it
   size - return the size of the stack
   isFull() - check if a stack is full
   isEmpty() - check stack is empty or not
@@ -78,6 +78,18 @@ public class StackWithArrayList {
     return newStack;
   }
 
+  /**
+   * Method return the top element of a stack without removing it
+   * @return top element of array
+   */
+  public int peek() {
+    if (size == 0) {
+      throw new ArrayIndexOutOfBoundsException("There is no elements in the stack");
+    }
+
+    return stack[size - 1];
+  }
+
   @Override
   public String toString() {
     String elements = "";
@@ -95,6 +107,7 @@ public class StackWithArrayList {
     stack.push(4);
     System.out.println(stack.del());
     System.out.println(stack.del());
+    System.out.println(stack.peek());
 
     System.out.println(stack);
   }
