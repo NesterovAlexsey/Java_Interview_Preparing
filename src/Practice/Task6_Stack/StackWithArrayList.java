@@ -8,13 +8,15 @@ Important stack operations:
   + Push() - inserting an element in a stack
   + Del() - deleting an element from the stack and return this element
   + Peek() - return the top element of a stack without removing it
-  size - return the size of the stack
+  + size - return the size of the stack
   isFull() - check if a stack is full
   isEmpty() - check stack is empty or not
   empty - empties the stack
-  compress - no empty cells in the array
-  capacityRemaining - how many free cells still empty
+  + compress - no empty cells in the array
+  + capacityRemaining - how many free cells still empty
 */
+
+import java.util.ArrayList;
 
 public class StackWithArrayList {
   private int[] stack;
@@ -90,6 +92,23 @@ public class StackWithArrayList {
     return stack[size - 1];
   }
 
+  public int getSize(){
+    return size;
+  }
+
+  public int numberOfEmptyCells() {
+    return stack.length - size;
+  }
+
+  public void compressionEmptyCells(){
+    int[] compressStack = new int[size];
+    for (int i = 0; i < size; i++) {
+      compressStack[i] = stack[i];
+    }
+
+    stack = compressStack;
+  }
+
   @Override
   public String toString() {
     String elements = "";
@@ -99,16 +118,29 @@ public class StackWithArrayList {
     return elements;
   }
 
+  public int[] toArray() {
+    int[] result = new int[stack.length];
+    for (int i = 0; i < stack.length; i++) {
+      result[i] = stack[i];
+    }
+    return result;
+  }
+
   public static void main(String[] args) {
     StackWithArrayList stack = new StackWithArrayList();
-    stack.push(1);
+    stack.push(7);
     stack.push(2);
-    stack.push(3);
+    stack.push(9);
     stack.push(4);
+    stack.push(5);
     System.out.println(stack.del());
     System.out.println(stack.del());
     System.out.println(stack.peek());
+    System.out.println("Stack size:" + stack.getSize());
+    System.out.println("Number of empty cells:" + stack.numberOfEmptyCells());
+    System.out.println(stack);
 
+    stack.compressionEmptyCells();
     System.out.println(stack);
   }
 }
