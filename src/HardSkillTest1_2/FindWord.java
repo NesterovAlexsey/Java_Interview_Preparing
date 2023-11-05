@@ -3,6 +3,7 @@ package HardSkillTest1_2;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 public class FindWord {
 
@@ -11,8 +12,11 @@ public class FindWord {
   public static void main(String[] args) {
 
     Text DasMarchen = new Text(readTextFromFile(pathToFairyTale));
-
-    System.out.println(DasMarchen.getContent());
+    List<String> partsContainKeyWord = DasMarchen.getPartOfTextFromKeyWord("Flusse");
+    for (String part : partsContainKeyWord) {
+      System.out.println(part);
+      System.out.println("========================================================");
+    }
 
   }
 
