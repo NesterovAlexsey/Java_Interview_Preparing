@@ -1,4 +1,4 @@
-package HardSkillTest1;
+package HardSkillTest1_1;
 
 //Task - Work with text:
 //Create an application that analyzes the text of a story and displays statistics
